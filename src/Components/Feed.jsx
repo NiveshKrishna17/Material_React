@@ -21,7 +21,6 @@ export default function Feed() {
     return (
         <Box
             flex={4} p={{ xs: 0, md: 2 }}
-            sx={{ display: { xs: 'none', sm: 'block' } }}
         >
             {
                 loading ?

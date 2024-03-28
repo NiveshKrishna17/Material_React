@@ -2,7 +2,7 @@ import { Home, Article, Group, Storefront, Person, Settings, AccountBox, ModeNig
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Switch } from '@mui/material'
 import React from 'react'
 
-export default function Sidebar() {
+export default function Sidebar({ mode, setMode }) {
     const listItems = [
         { icon: <Home />, ref: '#home', textTag: 'Homepage' },
         { icon: <Article />, ref: '#simple-list', textTag: 'Pages' },
@@ -19,24 +19,27 @@ export default function Sidebar() {
             p={2}
             sx={{ display: { xs: 'none', sm: 'block' } }}
         >
-            <List>
-                {listItems.map((list, id) => {
-                    return (
-                        <ListItem disablePadding key={id}>
-                            <ListItemButton component="a" href={list.ref}>
-                                <ListItemIcon>
-                                    {list.icon}
-                                </ListItemIcon>
-                                {
-                                    list.textTag === 'Theme' ? <Switch onChange={e => setMode(mode === 'light' ? 'dark' : 'light')} /> : <ListItemText primary={list.textTag} />
-                                }
+            <Box position='fixed'>
+                <List>
 
-                            </ListItemButton>
-                        </ListItem>
-                    )
-                })}
+                    {listItems.map((list, id) => {
+                        return (
+                            <ListItem disablePadding key={id}>
+                                <ListItemButton component="a" href={list.ref}>
+                                    <ListItemIcon>
+                                        {list.icon}
+                                    </ListItemIcon>
+                                    {
+                                        list.textTag === 'Theme' ? <Switch onChange={e => setMode(mode === 'light' ? 'dark' : 'light')} /> : <ListItemText primary={list.textTag} />
+                                    }
 
-            </List>
+                                </ListItemButton>
+                            </ListItem>
+                        )
+                    })}
+
+                </List>
+            </Box>
         </Box>
     )
 }
